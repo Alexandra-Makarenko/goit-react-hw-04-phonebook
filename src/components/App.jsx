@@ -7,7 +7,7 @@ import {ContactList} from './ContactList/ContactList'
 
 export const  App=()=>{
   const [contacts, setContacts] =  useLocalStorage('contacts');
-  const [filter, setFilter] = useState('');
+  const [filterContacts, setFilterContacts] = useState('');
   
 useEffect(() =>{
   const contacts = localStorage.getItem('contacts');
@@ -30,10 +30,10 @@ useEffect(() =>{
 
  
   const changeFilter = e => {
-    setFilter(e.currentTarget.value);
+    setFilterContacts(e.currentTarget.value);
   };
   const  visibleFilter = () => {
-     const normalizedFilter = filter.toLowerCase();
+     const normalizedFilter = filterContacts.toLowerCase();
 
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter),
@@ -52,8 +52,8 @@ useEffect(() =>{
         <ContactForm onSubmit={formSubmitHandler} />
 
   <h2>Contacts</h2>
-        <Filter value={filter} onChange={changeFilter} />
-       <ContactList contacts={visibleContacts} filter={filter}  onDeleteContact={deleteContact} />
+        <Filter value={filterContacts} onChange={changeFilter} />
+       <ContactList contacts={visibleContacts} filter={filterContacts}  onDeleteContact={deleteContact} />
 </div>
   );
   
