@@ -7,7 +7,7 @@ import {ContactList} from './ContactList/ContactList'
 
 
 export const  App=()=>{
-  const [contacts, setContacts] =  useLocalStorage('contacts');
+  const [contacts, setContacts] =  useLocalStorage('contacts', '');
   const [filterContacts, setFilterContacts] = useState('');
   
 useEffect(() =>{
