@@ -1,5 +1,6 @@
 import useLocalStorage from '../hooks/useLocalStorage';
-import { useState, useEffect } from 'react';import {ContactForm} from './ContactForm/ContactForm'
+import { useState, useEffect } from 'react';
+import {ContactForm} from './ContactForm/ContactForm'
 import {Filter} from './Filter/Filter'
 import {ContactList} from './ContactList/ContactList'
 
@@ -27,25 +28,30 @@ useEffect(() =>{
     contacts.map(contact=> contact.name.toLowerCase()).includes(data.name.toLowerCase())? (alert(`${data.name} is already in contacts`)) : (setContacts([...contacts, ...[data]])  )
   }
 
-
  
   const changeFilter = e => {
     setFilterContacts(e.currentTarget.value);
   };
-  const  visibleFilter = () => {
-     const normalizedFilter = filterContacts.toLowerCase();
+  // const  visibleFilter = () => {
+  //    const normalizedFilter = filterContacts.toLowerCase();
 
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
-    );
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter),
+  //   );
+  // };
+  const visibleFilter = contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filterContacts.toLowerCase()),
+      );
+      // const deleteContact = contacts.filter(contact =>
+      //   contact.name.toLowerCase().includes(filterContacts.toLowerCase()),
+      // );
+  
+  const deleteContact = data => {
+    setContacts(contacts.filter(contact => contact.id !== data));
   };
-  const deleteContact = todoId => {
-    setContacts(contacts.filter(contact => contact.id !== todoId));
-  };
-
-
  
-    const visibleContacts = visibleFilter();
+    const visibleContacts = visibleFilter;
+
     return (
    <div>
   <h1>Phonebook</h1>
